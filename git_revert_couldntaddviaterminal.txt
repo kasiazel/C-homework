@@ -1,0 +1,131 @@
+username@Dom-Komputer:~$ mkdir revert_trial
+username@Dom-Komputer:~$ cd revert_trial
+username@Dom-Komputer:~/revert_trial$ git init
+Initialized empty Git repository in /home/username/revert_trial/.git/
+username@Dom-Komputer:~/revert_trial$ ls
+username@Dom-Komputer:~/revert_trial$ touch trial.cpp
+username@Dom-Komputer:~/revert_trial$ vim trial.cpp
+username@Dom-Komputer:~/revert_trial$ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        trial.cpp
+
+nothing added to commit but untracked files present (use "git add" to track)
+username@Dom-Komputer:~/revert_trial$ git add trial.cpp
+username@Dom-Komputer:~/revert_trial$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+        new file:   trial.cpp
+
+username@Dom-Komputer:~/revert_trial$ git commit -m "First"
+[master (root-commit) 9cab85d] First
+ 1 file changed, 10 insertions(+)
+ create mode 100644 trial.cpp
+username@Dom-Komputer:~/revert_trial$ git log
+commit 9cab85d32b387a701e64efb9932efe2c21470832 (HEAD -> master)
+Author: kasia.zel <karol9010@gmail.com>
+Date:   Thu Jul 11 23:47:03 2019 +0200
+
+    First
+username@Dom-Komputer:~/revert_trial$ vim trial.cpp
+username@Dom-Komputer:~/revert_trial$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   trial.cpp
+
+no changes added to commit (use "git add" and/or "git commit -a")
+username@Dom-Komputer:~/revert_trial$ git add trial.cpp
+username@Dom-Komputer:~/revert_trial$ git commit -m "Second"
+[master 99712b9] Second
+ 1 file changed, 2 insertions(+)
+username@Dom-Komputer:~/revert_trial$ git log
+commit 99712b995a39f998305f5d89ed858cd3dd502a4e (HEAD -> master)
+Author: kasia.zel <karol9010@gmail.com>
+Date:   Thu Jul 11 23:50:47 2019 +0200
+
+    Second
+
+commit 9cab85d32b387a701e64efb9932efe2c21470832
+Author: kasia.zel <karol9010@gmail.com>
+Date:   Thu Jul 11 23:47:03 2019 +0200
+
+    First
+username@Dom-Komputer:~/revert_trial$ vim trial.cpp
+username@Dom-Komputer:~/revert_trial$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   trial.cpp
+
+no changes added to commit (use "git add" and/or "git commit -a")
+username@Dom-Komputer:~/revert_trial$ git add trial.cpp
+username@Dom-Komputer:~/revert_trial$ git commit -m "Third"
+[master bac9f9a] Third
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+username@Dom-Komputer:~/revert_trial$ log
+
+Command 'log' not found, but there are 16 similar ones.
+
+username@Dom-Komputer:~/revert_trial$ git log
+commit bac9f9a3a0c384f297a7109739492e255c6fcedc (HEAD -> master)
+Author: kasia.zel <karol9010@gmail.com>
+Date:   Thu Jul 11 23:52:48 2019 +0200
+
+    Third
+
+commit 99712b995a39f998305f5d89ed858cd3dd502a4e
+Author: kasia.zel <karol9010@gmail.com>
+Date:   Thu Jul 11 23:50:47 2019 +0200
+
+    Second
+
+commit 9cab85d32b387a701e64efb9932efe2c21470832
+Author: kasia.zel <karol9010@gmail.com>
+Date:   Thu Jul 11 23:47:03 2019 +0200
+
+    First
+username@Dom-Komputer:~/revert_trial$ git revert bac9f9
+[master eb6c37f] Revert "Third"
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+username@Dom-Komputer:~/revert_trial$ git log
+commit eb6c37f37ed37a49c8c7fa8ff85028fe1617af7c (HEAD -> master)
+Author: kasia.zel <karol9010@gmail.com>
+Date:   Thu Jul 11 23:53:51 2019 +0200
+
+    Revert "Third"
+
+    This reverts commit bac9f9a3a0c384f297a7109739492e255c6fcedc.
+
+commit bac9f9a3a0c384f297a7109739492e255c6fcedc
+Author: kasia.zel <karol9010@gmail.com>
+Date:   Thu Jul 11 23:52:48 2019 +0200
+
+    Third
+
+commit 99712b995a39f998305f5d89ed858cd3dd502a4e
+Author: kasia.zel <karol9010@gmail.com>
+Date:   Thu Jul 11 23:50:47 2019 +0200
+
+    Second
+
+commit 9cab85d32b387a701e64efb9932efe2c21470832
+Author: kasia.zel <karol9010@gmail.com>
+Date:   Thu Jul 11 23:47:03 2019 +0200
+
+    First
+username@Dom-Komputer:~/revert_trial$
